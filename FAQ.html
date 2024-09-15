@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Expense Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="expense-tracker.html">Expense Tracker</a></li>
+                <li><a href="create-budget.html">Create Your Budget</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-container">
+            <div class="faq">
+                <div class="faq-question" onclick="toggleFAQ('faq1')">How do I add an expense?</div>
+                <div class="faq-answer" id="faq1">
+                    <p>To add an expense, navigate to the Expense Tracker section, fill out the form, and click 'Add Expense'.</p>
+                </div>
+            </div>
+            <div class="faq">
+                <div class="faq-question" onclick="toggleFAQ('faq2')">What should I do if I forget to add an expense?</div>
+                <div class="faq-answer" id="faq2">
+                    <p>You can add expenses at any time. If you forgot to add an expense on the day it was incurred, simply add it with the correct date when you remember.</p>
+                </div>
+            </div>
+            <!-- Add more FAQs in the same pattern -->
+        </div>
+    </main>
+    <script src="js/faq.js"></script>
+</body>
+</html>

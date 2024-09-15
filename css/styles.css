@@ -257,4 +257,47 @@ table td button:hover {
     background-color: #c0392b;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+main {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+.faq-container {
+    margin-top: 20px;
+}
+
+.faq-question {
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.faq-answer {
+    padding: 10px 20px;
+    display: none; /* Hide answers initially */
+    background: #f9f9f9;
+    border-left: 3px solid #007BFF;
+}
+
+.faq-answer p {
+    margin: 0;
+}
 

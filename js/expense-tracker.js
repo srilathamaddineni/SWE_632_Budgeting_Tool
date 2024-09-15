@@ -1,80 +1,51 @@
-// Expense Tracker functionality
-
-// Select the form and table elements
+// Select the form and table body elements
 const expenseForm = document.getElementById('expense-form');
 const expenseTableBody = document.querySelector('#expense-table tbody');
 
-// Initialize an empty array to store expenses
-let expenses = [];
-
-// Function to render the expenses in the table
-function renderExpenses() {
-    // Clear the current table rows
-    expenseTableBody.innerHTML = '';
-
-    // Loop through each expense and create a row in the table
-    expenses.forEach((expense, index) => {
-        const row = document.createElement('tr');
-        
-        // Create table cells for expense name, amount, and category
-        row.innerHTML = `
-            <td>${expense.name}</td>
-            <td>$${expense.amount}</td>
-            <td>${expense.category}</td>
-            <td><button class="delete-btn" data-index="${index}">Delete</button></td>
-        `;
-
-        // Append the row to the table body
-        expenseTableBody.appendChild(row);
-    });
-
-    // Attach event listeners to delete buttons
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', deleteExpense);
-    });
-}
-
-// Function to handle form submission and add a new expense
-function addExpense(event) {
+// Event listener for form submission
+expenseForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form submission
 
-    // Get the values from the form fields
-    const name = document.getElementById('expense-name').value;
-    const amount = document.getElementById('expense-amount').value;
-    const category = document.getElementById('expense-category').value;
+    // Get form values
+    const expenseName = document.getElementById('expense-name').value;
+    const expenseAmount = document.getElementById('expense-amount').value;
+    const expenseCategory = document.getElementById('expense-category').value;
+    const expenseDate = document.getElementById('expense-date').value;
 
-    // Create an expense object
-    const expense = {
-        name: name,
-        amount: parseFloat(amount).toFixed(2), // Format amount to 2 decimal places
-        category: category
-    };
+    // Create a new table row
+    const newRow = document.createElement('tr');
 
-    // Add the expense to the array
-    expenses.push(expense);
+    // Create and append cells for expense name, amount, and category
+    const nameCell = document.createElement('td');
+    nameCell.textContent = expenseName;
+    newRow.appendChild(nameCell);
 
-    // Render the updated expense list
-    renderExpenses();
+    const amountCell = document.createElement('td');
+    amountCell.textContent = `$${parseFloat(expenseAmount).toFixed(2)}`;
+    newRow.appendChild(amountCell);
 
-    // Clear the form fields
+    const categoryCell = document.createElement('td');
+    categoryCell.textContent = expenseCategory.charAt(0).toUpperCase() + expenseCategory.slice(1);
+    newRow.appendChild(categoryCell);
+
+    const dateCell = document.createElement('td');
+    dateCell.textContent = expenseDate; // Assuming the date is in 'YYYY-MM-DD' format
+    newRow.appendChild(dateCell);
+
+    // Create and append a cell for actions (e.g., delete)
+    const actionsCell = document.createElement('td');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', function () {
+        newRow.remove(); // Remove the row when the delete button is clicked
+    });
+    actionsCell.appendChild(deleteButton);
+    newRow.appendChild(actionsCell);
+
+    // Append the new row to the table body
+    expenseTableBody.appendChild(newRow);
+
+    // Clear the form fields after adding the expense
     expenseForm.reset();
-}
-
-// Function to delete an expense
-function deleteExpense(event) {
-    // Get the index of the expense to delete
-    const index = event.target.getAttribute('data-index');
-
-    // Remove the expense from the array
-    expenses.splice(index, 1);
-
-    // Re-render the expense list
-    renderExpenses();
-}
-
-// Add an event listener to the form to handle submission
-expenseForm.addEventListener('submit', addExpense);
-
-// Initial rendering of the expense list (empty at first)
-renderExpenses();
+});
